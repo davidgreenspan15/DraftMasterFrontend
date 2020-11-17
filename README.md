@@ -3,7 +3,7 @@
 Draft Master is a web application designed to help people with their fantasy football drafts.
 
 Draft Master aggregates all player data including: depth position, average draft pick, player rank, teams, and notes
-from the Draft Master API so that it can easily be scene and interacted with.
+from the [Draft Master API](https://github.com/davidgreenspan15/DraftMasterAPI) so that it can easily be scene and interacted with.
 
 - Users can filter and search
 - Users can mark players drafted or not for draft purposes
