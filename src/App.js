@@ -2,7 +2,7 @@ import './App.css';
 import { Box, Button, Paper, styled, useTheme } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { useSnackbar } from 'notistack';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 function App() {
   const [allPlayers, setAllPLayers] = useState([]);
@@ -31,7 +31,7 @@ function App() {
       { variant: 'info' },
       { preventDuplicate: true }
     );
-    fetch('http://localhost:3000/players')
+    fetch('https://blooming-taiga-53389.herokuapp.com/players')
       .then(response => response.json())
       .then(data => setAllPLayers([...data]));
   }, [updateUser, updateReset]);
@@ -196,7 +196,7 @@ function App() {
   const makeTaken = e => {
     enqueueSnackbar('Updating Availablibility', { variant: 'warning' });
     e.forEach(person => {
-      fetch(`http://localhost:3000/players/${person.id}`, {
+      fetch(`https://blooming-taiga-53389.herokuapp.com/players/${person.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -233,7 +233,7 @@ function App() {
   // Reset API database
   const resetPlayers = () => {
     enqueueSnackbar('Reseting Players', { variant: 'warning' });
-    fetch('http://localhost:3000/resetplayers')
+    fetch('https://blooming-taiga-53389.herokuapp.com/resetplayers')
       .then(response => response.json())
       .then(data => setAllPLayers([...data]))
       .then(data => setUpdateReset(!updateReset));
