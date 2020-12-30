@@ -235,9 +235,7 @@ function App() {
   // Reset API database
   const resetPlayers = () => {
     enqueueSnackbar('Reseting Players', { variant: 'warning' });
-    fetch(
-      'https://cors-anywhere.herokuapp.com/https://blooming-taiga-53389.herokuapp.com/resetplayers'
-    )
+    fetch('https://blooming-taiga-53389.herokuapp.com/resetplayers')
       .then(response => response.json())
       .then(data => setAllPLayers([...data]))
       .then(data => setUpdateReset(!updateReset));
