@@ -2,7 +2,7 @@ import './App.css';
 import { Box, Button, Paper, styled, useTheme } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { useSnackbar } from 'notistack';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 function App() {
   const [allPlayers, setAllPLayers] = useState([]);
@@ -33,7 +33,7 @@ function App() {
       },
       { preventDuplicate: true }
     );
-    fetch('https://blooming-taiga-53389.herokuapp.com/players')
+    fetch('http://localhost:3000/players')
       .then(response => response.json())
       .then(data => setAllPLayers([...data]));
   }, [updateUser, updateReset]);
@@ -198,7 +198,7 @@ function App() {
   const makeTaken = e => {
     enqueueSnackbar('Updating Availablibility', { variant: 'warning' });
     e.forEach(person => {
-      fetch(`https://blooming-taiga-53389.herokuapp.com/players/${person.id}`, {
+      fetch(`http://localhost:3000/players/${person.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -235,7 +235,11 @@ function App() {
   // Reset API database
   const resetPlayers = () => {
     enqueueSnackbar('Reseting Players', { variant: 'warning' });
+<<<<<<< HEAD
     await fetch('https://cors-anywhere.herokuapp.com/https://blooming-taiga-53389.herokuapp.com/resetplayers')
+=======
+    fetch('http://localhost:3000/resetplayers')
+>>>>>>> parent of abfe7fd... fix for heroku deploy
       .then(response => response.json())
       .then(data => setAllPLayers([...data]))
       .then(data => setUpdateReset(!updateReset));
