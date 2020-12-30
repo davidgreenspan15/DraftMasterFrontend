@@ -8,7 +8,7 @@ function App() {
   const [allPlayers, setAllPLayers] = useState([]);
   const [playerData, setPlayerData] = useState([]);
   const [updateUser, setUpdateUser] = useState('');
-  const [updateReset, setUpdateReset] = useState('');
+  const [updateReset, setUpdateReset] = useState(false);
   const [updatefilter, setUpdatefilter] = useState(true);
   const [toggleGStat, setToggleGStat] = useState(true);
   const [toggleYStat, setToggleYStat] = useState(true);
@@ -235,7 +235,7 @@ function App() {
   // Reset API database
   const resetPlayers = () => {
     enqueueSnackbar('Reseting Players', { variant: 'warning' });
-    fetch('https://blooming-taiga-53389.herokuapp.com/resetplayers')
+    await fetch('https://cors-anywhere.herokuapp.com/https://blooming-taiga-53389.herokuapp.com/resetplayers')
       .then(response => response.json())
       .then(data => setAllPLayers([...data]))
       .then(data => setUpdateReset(!updateReset));
