@@ -235,11 +235,7 @@ function App() {
   // Reset API database
   const resetPlayers = () => {
     enqueueSnackbar('Reseting Players', { variant: 'warning' });
-<<<<<<< HEAD
-    await fetch('https://cors-anywhere.herokuapp.com/https://blooming-taiga-53389.herokuapp.com/resetplayers')
-=======
     fetch('http://localhost:3000/resetplayers')
->>>>>>> parent of abfe7fd... fix for heroku deploy
       .then(response => response.json())
       .then(data => setAllPLayers([...data]))
       .then(data => setUpdateReset(!updateReset));
