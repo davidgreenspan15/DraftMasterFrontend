@@ -28,7 +28,9 @@ function App() {
   React.useEffect(() => {
     enqueueSnackbar(
       'Updating Players',
-      { variant: 'info' },
+      {
+        variant: 'info',
+      },
       { preventDuplicate: true }
     );
     fetch('https://blooming-taiga-53389.herokuapp.com/players')
@@ -233,7 +235,9 @@ function App() {
   // Reset API database
   const resetPlayers = () => {
     enqueueSnackbar('Reseting Players', { variant: 'warning' });
-    fetch('https://blooming-taiga-53389.herokuapp.com/resetplayers')
+    fetch(
+      'https://cors-anywhere.herokuapp.com/https://blooming-taiga-53389.herokuapp.com/resetplayers'
+    )
       .then(response => response.json())
       .then(data => setAllPLayers([...data]))
       .then(data => setUpdateReset(!updateReset));
@@ -257,20 +261,38 @@ function App() {
       <Box>
         <Button
           onClick={toggleFilter}
-          style={{ color: 'white', paddingTop: '5px' }}
+          style={{
+            color: 'white',
+            paddingTop: '5px',
+          }}
         >
           Filter?
         </Button>
-        <Button onClick={changeToggleGStat} style={{ color: 'white' }}>
+        <Button
+          onClick={changeToggleGStat}
+          style={{
+            color: 'white',
+          }}
+        >
           Game Stats?
         </Button>
-        <Button onClick={changeToggleYStat} style={{ color: 'white' }}>
+        <Button
+          onClick={changeToggleYStat}
+          style={{
+            color: 'white',
+          }}
+        >
           Season Stats?
         </Button>
-        <Button onClick={resetPlayers} style={{ color: 'white' }}>
+        <Button
+          onClick={resetPlayers}
+          style={{
+            color: 'white',
+          }}
+        >
           Reset players
         </Button>
-        {/*<Button onClick={createTable}>Create Table</Button> */}
+        {/* <Button onClick={createTable}>Create Table</Button> */}
       </Box>
 
       {playerDataTable.length > 2 ? (
@@ -289,7 +311,9 @@ function App() {
         >
           <MaterialTable
             title={'Fantasy Draft Board Assistant'}
-            components={{ Container: Box }}
+            components={{
+              Container: Box,
+            }}
             columns={[
               {
                 title: 'Rank',
@@ -339,7 +363,6 @@ function App() {
                 field: 'gfanpts',
                 hidden: toggleGStat,
               },
-
               {
                 title: 'Receptions PG',
                 field: 'grec_rec',
@@ -401,7 +424,6 @@ function App() {
                 field: 'yfanpts',
                 hidden: toggleYStat,
               },
-
               {
                 title: 'Receptions',
                 field: 'yrec_rec',
@@ -458,7 +480,6 @@ function App() {
                 field: 'ytds_pass',
                 hidden: toggleYStat,
               },
-
               {
                 title: 'Team',
                 field: 'team',
@@ -510,10 +531,7 @@ function App() {
               sorting: true,
               rowStyle: rowData => {
                 if (rowData.injured === 'true') {
-                  return {
-                    backgroundColor: '#fff',
-                    opacity: 4.0,
-                  };
+                  return { backgroundColor: '#fff', opacity: 4.0 };
                 } else {
                   return {
                     backgroundColor: 'lightgray',
